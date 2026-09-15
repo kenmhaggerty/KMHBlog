@@ -1,10 +1,10 @@
-baseurl = "http://kenmhaggerty.com/blog/"
+baseurl = "https://www.kenmhaggerty.com/blog/"
 languageCode = "en-us"
 title = "Blog • Ken M. Haggerty"
 theme = "angels-ladder"
 
 [Params]
-home = "http://kenmhaggerty.com"
+home = "https://www.kenmhaggerty.com"
 twitter = "kenmhaggerty"
 github = "kenmhaggerty"
 showsRSS = true
