@@ -3,6 +3,9 @@ locale = "en-us"
 title = "Blog • Ken M. Haggerty"
 theme = "angels-ladder"
 
+[permalinks]
+post = "/:filename/"
+
 [markup.goldmark.renderer]
 unsafe = true
 
