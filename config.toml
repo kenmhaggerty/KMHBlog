@@ -2,7 +2,9 @@ baseurl = "https://www.kenmhaggerty.com/blog/"
 locale = "en-us"
 title = "Blog • Ken M. Haggerty"
 theme = "angels-ladder"
-ignoreLogs = ['warning-goldmark-raw-html']
+
+[markup.goldmark.renderer]
+unsafe = true
 
 [Params]
 home = "https://www.kenmhaggerty.com"
