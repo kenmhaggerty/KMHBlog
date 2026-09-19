@@ -3,7 +3,7 @@
   <footer role="contentinfo">
     <div style="text-align:center;">
       {{ with .Site.Params.profile }}<img src="{{ . }}" width="64" height="64"><br>{{ end }}
-      {{ .Site.Params.copyright }}
+      {{ $year := now.Format "2006" }}{{ with .Site.RegularPages.ByDate.Reverse }}{{ $year = (index . 0).Date.Format "2006" }}{{ end }}{{ .Site.Params.copyright }} • {{ $year }}
     </div>
   </footer>
 
