@@ -7,7 +7,7 @@ description = "In Part 1, I outlined how I set security rules and architected my
 
 +++
 
-In [Part 1](/blog/post/firebase-acl-part-1/), I outlined how I set security rules and architected my data to allow for [ACL](https://en.wikipedia.org/wiki/Access_control_list)-like object sharing in [Firebase](https://firebase.google.com/). However, I never went over how I actually implemented shared objects in Firebase. In this post, I'll go over [**KMHFirebaseController+ACL**](https://github.com/kenmhaggerty/KMHFirebaseController), a category built on top of [KMHFirebaseController](/blog/post/firebase-controller/), and explain how it works and how to use it in your app.
+In [Part 1](/blog/firebase-acl-part-1/), I outlined how I set security rules and architected my data to allow for [ACL](https://en.wikipedia.org/wiki/Access_control_list)-like object sharing in [Firebase](https://firebase.google.com/). However, I never went over how I actually implemented shared objects in Firebase. In this post, I'll go over [**KMHFirebaseController+ACL**](https://github.com/kenmhaggerty/KMHFirebaseController), a category built on top of [KMHFirebaseController](/blog/firebase-controller/), and explain how it works and how to use it in your app.
 
 ### How It Works
 
@@ -106,7 +106,7 @@ Fetches and iteratively returns all public objects. For each object, the provide
 Fetches and iteratively returns all objects shared with the current user. For each object, the provided `block` is called once and also includes a `progress` value ranging from `0.0` to `1.0`, where each object is counted equally towards progress. Note that objects may be both shared and public.
 
 ## Observe
-*These observer methods follow the same behavior established in [KMHFirebaseController](/blog/post/firebase-controller/).*
+*These observer methods follow the same behavior established in [KMHFirebaseController](/blog/firebase-controller/).*
 
 #### + (void)observeValueChangedAtPath:(NSString *)path forObjectWithId:(NSString *)objectId withBlock:(void(^)(id value))block
 Adds an observer at the given path relative to the provided `objectId` that will trigger the provided block when the value at that path is changed.

@@ -10,9 +10,9 @@ description = "I had originally planned to publish a blog post on I couldn't fig
 ### Deus Ex Machina: or, in Praise Of Writing
 
 > "I write entirely to find out what I’m thinking, what I’m looking at, what I see and what it means. What I want and what I fear."  
-> &mdash; Joan Didion, ["Why I Write"](http://www.montgomeryschoolsmd.org/uploadedFiles/schools/whitmanhs/academics/english/Why%20I%20Write%20Didion.pdf)
+> — Joan Didion, ["Why I Write"](http://www.montgomeryschoolsmd.org/uploadedFiles/schools/whitmanhs/academics/english/Why%20I%20Write%20Didion.pdf)
 
-I had originally planned to publish a blog post on my difficulties working with Firebase. I had managed to create a cleaner API for Firebase ([**KMHFirebaseController**](/blog/post/firebase-controller)), but I struggled to find a way to share objects in Firebase similar to how I did in [Parse](http://www.parse.com/)&mdash;i.e., user- and object-specific; semantically naïve; as [normalized](https://en.wikipedia.org/wiki/Database_normalization) as possible; and with correct read, write, and sharing permissions.
+I had originally planned to publish a blog post on my difficulties working with Firebase. I had managed to create a cleaner API for Firebase ([**KMHFirebaseController**](/blog/firebase-controller/)), but I struggled to find a way to share objects in Firebase similar to how I did in [Parse](http://www.parse.com/)—i.e., user- and object-specific; semantically naïve; as [normalized](https://en.wikipedia.org/wiki/Database_normalization) as possible; and with correct read, write, and sharing permissions.
 
 I spent the two weeks after my second blog post attempting to implement this before deciding it was a better use of time to publish what I had and implement sharing later.
 
@@ -62,14 +62,14 @@ These security rules are a little complex, but the high level overview is:
 - Only the appropriate user can see which objects have been specifically shared with that user.
 - Only users with whom the object has been specifically shared can edit whether an object is public.
 - Only users with whom the object has been specifically shared can share the object with others.
-- Permissions can only be created for object IDs that exist. &mdash; _n.b. unless the current user is granting themselves permission to create a new object._<sup id="ref_1">[&#8224;](#footnote_1)</sup>
-- Objects can only be saved at object IDs to which the user has access.<sup>[&#8224;](#footnote_1)</sup>
+- Permissions can only be created for object IDs that exist. — *n.b. unless the current user is granting themselves permission to create a new object.*<sup id="ref_1"><a href="#footnote_1">&#8224;</a></sup>
+- Objects can only be saved at object IDs to which the user has access.<sup><a href="#footnote_1">&#8224;</a></sup>
 - Users can always removes themselves from a shared object.
 - New objects can only be created by authenticated users.
 
 I've tested out these security rules in Firebase's invaluable new [Security Simulator](https://firebase.googleblog.com/2012/12/the-new-firebase-security-api.html), and from what I can see all of these requirements seem to be met. I'll have to write some tests to ensure that this is the case both in its current incarnation and in all future updates; but for now, I am definitely very proud.
 
-* * *
+---
 <p class="footnotes">
-<a name="footnote_1" href="#ref_1">&#8224;</a> ADDED: While writing <a href="/blog/post/firebase-acl-part-1/">Part 2</a>, I realized the need to be able to set a user permission for yourself prior to creating a new object. To clarify, I appended the italicized text and added the next point, and I corrected my security rules to reflect this change. (Aug 4, 2016)
+<a name="footnote_1" href="#ref_1">&#8224;</a> ADDED: While writing <a href="/blog/firebase-acl-part-2/">Part 2</a>, I realized the need to be able to set a user permission for yourself prior to creating a new object. To clarify, I appended the italicized text and added the next point, and I corrected my security rules to reflect this change. (Aug 4, 2016)
 </p>
