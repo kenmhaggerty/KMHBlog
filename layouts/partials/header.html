@@ -1,3 +1,4 @@
+{{ $pageTitle := .Title }}{{ if ne .Title .Site.Title }}{{ $pageTitle = printf "%s | %s" .Title .Site.Title }}{{ end }}
 <!DOCTYPE html>
 <html lang="{{.Site.Language.Locale}}">
 <head>
@@ -6,7 +7,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="UTF-8">
   <title>
-    {{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} | {{ .Site.Title }}{{ end }}
+    {{ $pageTitle }}
   </title>
 
 
@@ -20,12 +21,12 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="{{ "css/sanitize.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/responsive.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/highlight_monokai.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
-
+  <link rel="stylesheet" href="{{ "css/sanitize.css" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/responsive.css" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/highlight_monokai.css" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/theme.css" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
+  
   <!-- RSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="{{ .Site.BaseURL }}index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
@@ -39,6 +40,27 @@
     <script type="text/javascript">stLight.options({publisher: '{{ . }}', doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
   {{ end }}
 
+  <!-- Open Graph
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {{ with .Params.image | default .Site.Params.cover }}
+    <meta property="og:image" content="{{ printf "images/%s" . | absURL }}"/>
+  {{ end }}
+  {{ with .Description }}
+    <meta property="og:description" content="{{ . }}"/>
+  {{ end }}
+
+  <!-- Twitter Card
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {{ with .Site.Params.twitter }}
+    <meta name="twitter:site" content="@{{ . }}">
+    <meta name="twitter:creator" content="@{{ . }}">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $.Description }}">
+    {{ with $.Params.image | default $.Site.Params.cover }}
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="{{ printf "images/%s" . | absURL }}">
+    {{ end }}
+  {{ end }}
 
 </head>
 
@@ -57,10 +79,11 @@
       </div>
       <div id="social" class="col span_6">
         <ul>
-          {{ with .Site.Params.twitter }}<li><a href="{{ . }}" target="_blank">Twitter</a></li>{{ end }}
-          {{ with .Site.Params.facebook }}<li><a href="{{ . }}" target="_blank">Facebook</a></li>{{ end }}
-          {{ with .Site.Params.github }}<li><a href="{{ . }}" target="_blank">GitHub</a></li>{{ end }}
-          {{ if .Site.Params.showsRSS }}<li><a href="{{ .Site.BaseURL }}index.xml" type="application/rss+xml" target="_blank">RSS</a></li>{{ end }}
+          {{ with .Site.Params.home }}<li><a href="{{ . }}">Home</a></li>{{ end }}
+          {{ with .Site.Params.twitter }}<li><a href="https://twitter.com/{{ . }}">Twitter</a></li>{{ end }}
+          {{ with .Site.Params.facebook }}<li><a href="https://www.facebook.com/{{ . }}">Facebook</a></li>{{ end }}
+          {{ with .Site.Params.github }}<li><a href="https://github.com/{{ . }}">GitHub</a></li>{{ end }}
+          {{ if .Site.Params.showsRSS }}<li><a href="{{ .Site.BaseURL }}index.xml" type="application/rss+xml">RSS</a></li>{{ end }}
         </ul>
       </div>
     </div>
