@@ -9,6 +9,16 @@ post = "/:filename/"
 [markup.goldmark.renderer]
 unsafe = true
 
+[markup.goldmark.extensions.extras]
+  [markup.goldmark.extensions.extras.mark]
+    enable = true
+  [markup.goldmark.extensions.extras.delete]
+    enable = true
+  [markup.goldmark.extensions.extras.subscript]
+    enable = true
+  [markup.goldmark.extensions.extras.superscript]
+    enable = true
+
 [Params]
 home = "https://www.kenmhaggerty.com"
 twitter = "kenmhaggerty"
