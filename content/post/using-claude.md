@@ -44,7 +44,7 @@ When I finally decided it was time to turn my Figma design into website code, I 
 
 In contrast, I then tried using Claude's most advanced model Fable and, within 20 minutes, achieved a really impressive result with cleaner code and an end-result that better matched my mockup:
 
-{{% comparison first="/blog/images/using-claude/figma.png" firstLabel="Figma" second="/blog/images/using-claude/fable.png" secondLabel="Fable" caption="<b>Above</b> Comparison of output &quot;Fable&quot; model output vs. Figma. This was much closer to my original Figma mockup and felt like something I could work with." %}}
+{{% comparison first="/blog/images/using-claude/figma.png" firstLabel="Figma" second="/blog/images/using-claude/fable.png" secondLabel="Fable" caption="<b>Above</b> Comparison of &quot;Fable&quot; model output vs. Figma. This was much closer to my original Figma mockup and felt like something I could work with." %}}
 
 For everyday tasks like asking questions, debugging code, proofreading, or generating stock images, the cheapest and most basic models will probably get the job done. It is my belief that it is both financially and computationally wasteful to use the most advanced models to do things a simpler model could accomplish. However, for anything more challenging or significant, the difference is real, so be sure to use the right model and don't be afraid to switch as appropriate.
 
