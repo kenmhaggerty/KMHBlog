@@ -25,7 +25,6 @@ As such, I wanted to write a blog post to share my own experience using AI to sh
   <img src="/blog/images/using-claude/figma-workspace.png">
 </div>
 <span class="caption"><b>Above</b> Designing my new personal website in Figma.</span>
-<div></div>
 
 #### "Design-coding" before "Vibe-coding"
 
