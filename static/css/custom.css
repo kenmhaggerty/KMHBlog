@@ -114,3 +114,7 @@ pre.block {
 .gist .gist-data .highlight {
   background-color: transparent;
 }
+.scrollable-gist .gist-data {
+  max-height: 400px;
+  overflow-y: auto;
+}
