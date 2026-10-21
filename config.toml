@@ -2,12 +2,16 @@ baseurl = "https://www.kenmhaggerty.com/blog/"
 locale = "en-us"
 title = "Blog • Ken M. Haggerty"
 theme = "angels-ladder"
+capitalizeListTitles = false
 
 [permalinks]
 post = "/:filename/"
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[markup.goldmark.extensions]
+  strikethrough = false
 
 [markup.goldmark.extensions.extras]
   [markup.goldmark.extensions.extras.mark]

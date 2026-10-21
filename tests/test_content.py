@@ -93,6 +93,14 @@ class RenderedContentTests(unittest.TestCase):
                 with self.subTest(post=post.filename, src=src):
                     self.assertTrue(os.path.isfile(os.path.join(PROJECT_ROOT, "static", src[len("/blog/"):])))
 
+    def test_article_links_use_https(self):
+        for post in published_posts():
+            article = self.site.html(post.slug, "index.html").find("article")
+            for link in article.find_all("a"):
+                href = link.attrs.get("href", "")
+                with self.subTest(post=post.filename, href=href):
+                    self.assertFalse(href.startswith("http://"))
+
     def test_embedded_scripts_and_images_use_https(self):
         # Mixed content is blocked by browsers on an HTTPS page.
         for post in published_posts():

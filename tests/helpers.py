@@ -158,6 +158,8 @@ def parse_front_matter(text):
 def load_posts(posts_dir=POSTS_DIR):
     posts = []
     for path in sorted(glob.glob(os.path.join(posts_dir, "*.md"))):
+        if os.path.basename(path) == "_index.md":
+            continue  # Section metadata, not a post.
         with open(path, encoding="utf-8") as f:
             front_matter, body = parse_front_matter(f.read())
         posts.append(Post(os.path.basename(path), front_matter, body))

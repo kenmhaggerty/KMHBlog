@@ -33,7 +33,7 @@ class FixtureSiteTests(unittest.TestCase):
         write_post(
             cls.source,
             "fixture-tagged.md",
-            {"date": "2010-01-03T12:00:00-05:00", "draft": False, "title": "Fixture Tagged", "tags": ["Swift UI", "Firebase"]},
+            {"date": "2010-01-03T12:00:00-05:00", "draft": False, "title": "Fixture Tagged", "tags": ["Swift UI", "iOS", "firebase"]},
             "Markdown extras: ==marked== ~~deleted~~ H~2~O x^2^.\n\n#### Fixture Heading\n\nBody text.",
         )
         write_post(
@@ -104,7 +104,10 @@ class FixtureSiteTests(unittest.TestCase):
     def test_tag_links_on_post_page(self):
         meta = self.site.html("fixture-tagged", "index.html").find("div", cls="meta")
         links = [(link.clean_text(), link.attrs["href"]) for link in meta.find_all("a")]
-        self.assertEqual(links, [("Swift UI", "/blog/tags/swift-ui"), ("Firebase", "/blog/tags/firebase")])
+        self.assertEqual(
+            links,
+            [("Swift UI", "/blog/tags/swift-ui"), ("iOS", "/blog/tags/ios"), ("firebase", "/blog/tags/firebase")],
+        )
         self.assertIn("#Swift UI", meta.clean_text())
 
     def test_tag_links_on_listing_pages(self):
@@ -115,18 +118,19 @@ class FixtureSiteTests(unittest.TestCase):
                     continue
                 with self.subTest(page="/".join(path)):
                     hrefs = [link.attrs["href"] for link in summary.find("div", cls="meta").find_all("a")]
-                    self.assertEqual(hrefs, ["/blog/tags/swift-ui", "/blog/tags/firebase"])
+                    self.assertEqual(hrefs, ["/blog/tags/swift-ui", "/blog/tags/ios", "/blog/tags/firebase"])
 
-    def test_tag_pages_list_tagged_posts(self):
-        for slug, title in [("swift-ui", "#Swift UI"), ("firebase", "#Firebase")]:
+    def test_tag_pages_list_tagged_posts_and_keep_tag_casing(self):
+        # config.toml sets capitalizeListTitles = false so tags like "iOS" aren't shown as "IOS".
+        for slug, title in [("swift-ui", "#Swift UI"), ("ios", "#iOS"), ("firebase", "#firebase")]:
             with self.subTest(tag=slug):
                 document = self.site.html("tags", slug, "index.html")
                 self.assertEqual(document.find("div", cls="article-header").clean_text(), title)
                 self.assertEqual(summary_titles(document), ["Fixture Tagged"])
 
     def test_tag_page_titles(self):
-        document = self.site.html("tags", "firebase", "index.html")
-        self.assertEqual(document.find("title").clean_text(), "Firebase | Blog • Ken M. Haggerty")
+        document = self.site.html("tags", "ios", "index.html")
+        self.assertEqual(document.find("title").clean_text(), "iOS | Blog • Ken M. Haggerty")
 
     # Posts without a hero image or description (header.html fallbacks)
 
@@ -142,19 +146,17 @@ class FixtureSiteTests(unittest.TestCase):
 
     def test_markdown_extras_are_rendered(self):
         article = self.site.html("fixture-tagged", "index.html").find("article")
-        for tag, text in [("mark", "marked"), ("del", "deleted"), ("sup", "2")]:
+        for tag, text in [("mark", "marked"), ("del", "deleted"), ("sub", "2"), ("sup", "2")]:
             with self.subTest(tag=tag):
                 node = article.find(tag)
                 self.assertIsNotNone(node, "<{}> was not rendered".format(tag))
                 self.assertEqual(node.clean_text(), text)
 
-    @unittest.expectedFailure
-    def test_markdown_subscript_is_rendered(self):
-        # Known issue: config.toml enables the subscript extra, but Goldmark's default strikethrough
-        # extension claims single tildes first, so H~2~O renders as H<del>2</del>O. Setting
-        # markup.goldmark.extensions.strikethrough = false fixes it (~~text~~ still works via the delete extra).
+    def test_single_tildes_are_subscript_not_strikethrough(self):
+        # Goldmark's strikethrough extension (disabled in config.toml) would render H~2~O as H<del>2</del>O.
         article = self.site.html("fixture-tagged", "index.html").find("article")
-        self.assertIsNotNone(article.find("sub"))
+        self.assertIn("H<sub>2</sub>O", self.site.read("fixture-tagged", "index.html"))
+        self.assertEqual([node.clean_text() for node in article.find_all("del")], ["deleted"])
 
     def test_markdown_headings_get_ids(self):
         heading = self.site.html("fixture-tagged", "index.html").find("h4")

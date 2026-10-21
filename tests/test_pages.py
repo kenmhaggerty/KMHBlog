@@ -59,6 +59,18 @@ class PostListTests(unittest.TestCase):
         )
 
 
+class ListPageTitleTests(unittest.TestCase):
+    """content/*/_index.md keep auto-generated list headings capitalized despite capitalizeListTitles = false."""
+
+    def test_list_headings(self):
+        site = build_site()
+        for path, heading in [("post", "#Posts"), ("tags", "#Tags"), ("categories", "#Categories")]:
+            with self.subTest(page=path):
+                document = site.html(path, "index.html")
+                self.assertEqual(document.find("div", cls="article-header").clean_text(), heading)
+                self.assertEqual(document.find("title").clean_text(), heading[1:] + " | Blog • Ken M. Haggerty")
+
+
 class SinglePostTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
