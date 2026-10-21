@@ -1,0 +1,19 @@
+{
+  "name": "kmhblog",
+  "private": true,
+  "description": "Linting and formatting tools for the blog. The site itself is built with Hugo.",
+  "scripts": {
+    "lint": "npm run lint:md && npm run lint:css && npm run format:check",
+    "lint:md": "markdownlint-cli2",
+    "lint:css": "stylelint \"static/css/**/*.css\"",
+    "format": "prettier --write \"static/css/**/*.css\" && stylelint --fix \"static/css/**/*.css\" && markdownlint-cli2 --fix",
+    "format:check": "prettier --check \"static/css/**/*.css\"",
+    "test": "python3 -m unittest discover -s tests"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "0.24.0",
+    "prettier": "3.9.10",
+    "stylelint": "17.16.0",
+    "stylelint-config-standard": "40.0.0"
+  }
+}

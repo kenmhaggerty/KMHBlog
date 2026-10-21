@@ -16,9 +16,9 @@ As I described in my previous post, KMHFirebaseController+ACL works by using a s
 To do this without compromising data security, we establish the following procedure for saving objects to Firebase.
 
 1. First, ensure that:
-  - The user is authenticated (i.e., logged in).
-  - Our data object is formatted correctly for Firebase.
-  - A unique ID has been assigned to our data object.
+   - The user is authenticated (i.e., logged in).
+   - Our data object is formatted correctly for Firebase.
+   - A unique ID has been assigned to our data object.
 2. Grant ourself permission to create an object on Firebase with our desired object ID.
 3. Save our object to Firebase.
 4. Set permissions for our object on Firebase, including whether our object should be publicly viewable by all authenticated users of your app and which other users should have specific access to read, edit, and modify permissions for our object.
@@ -50,84 +50,109 @@ And without further ado, here's the full API!
 # KMHFirebaseController+ACL
 
 ## Notifications
+
 *The following constants are notification names which you can observe via the default [NSNotificationCenter](https://developer.apple.com/reference/foundation/nsnotificationcenter?language=objc). To get an NSSet of NSStrings for object IDs, access the value of* `FirebaseNotificationUserInfoKey` *within the notification's* `userInfo` *dictionary.*
 
 #### FirebaseObjectsWithIdsWereMadePublicNotification
+
 Includes IDs for both newly accessible and previously accessible objects that were made public.
 
 #### FirebaseObjectsWithIdsWereMadePrivateNotification
+
 Includes IDs for only those objects to which the current user still has access.
 
 #### FirebaseObjectsWithIdsWereSharedNotification
+
 Includes IDs for both newly accessible and previously accessible objects that were shared with the current user.
 
 #### FirebaseObjectsWithIdsWereUnsharedNotification
+
 Includes IDs for only those objects to which the current user still has access.
 
 #### FirebaseObjectsWithIdsWereMadeInaccessibleNotification
+
 Includes IDs for objects to which the current user no longer has access, whether because the item was unshared or because the item was made private and not shared with the current user.
 
 ## Setup
 
 #### + (void)setCurrentUserId:(NSString *)userId
+
 Needed in order observe when objects are shared or unshared and to save new objects to Firebase. The provided `userId` should be identical to `uid` in [FIRUserInfo](https://firebase.google.com/docs/reference/ios/firebaseauth/protocol_f_i_r_user_info-p) obtained via Firebase authentication, as it is used to determine access to data. Simultaneously, you should ensure that the user is indeed authenticated. In the schema used by KMHFirebaseController+ACL, unauthenticated users do not have access to data on Firebase, so `userId` should be `nil` whenever the user is logged out.
 
 ## Save
 
 #### + (void)saveObject:(id)object withId:(NSString *)objectId isPublic:(BOOL)isPublic users:(NSSet <NSString *> *)userIds error:(void (^)(NSError *error))errorBlock completion:(void (^)(BOOL success))completionBlock
+
 For saving new objects to Firebase. The current user is automatically included as a specified user and does not need to be included in `userIds`. Because this method performs multiple concurrent calls to Firebase, `errorBlock` may be called multiple times.
 
 #### + (void)overwriteObjectWithId:(NSString *)objectId withObject:(id)object andCompletion:(void (^)(BOOL success, NSError *error))completionBlock
+
 For updating objects on Firebase. An object with the provided objectId must already exist on Firebase, and the current user must already have specific access to it.
 
 ## Permissions
 
 #### + (void)setObjectWithId:(NSString *)objectId asPublic:(BOOL)isPublic withCompletion:(void (^)(BOOL success, NSError *error))completionBlock
+
 Public objects can be read by all users, while private object objects can only be read by specified users. Only specified users can edit objects. The current user must be a specified user in order to change object privacy settings.
 
 #### + (void)addUserWithId:(NSString *)userId toObjectWithId:(NSString *)objectId withCompletion:(void (^)(BOOL success, NSError *error))completionBlock
+
 Allows the specified user to read and edit the object on Firebase regardless of whether the object is public or private. The current user must be a specified user in order to add another user to the object.
 
 #### + (void)removeUserWithId:(NSString *)userId fromObjectWithId:(NSString *)objectId withCompletion:(void (^)(BOOL success, NSError *error))completionBlock
+
 Removes the specified user from the object. The user will no longer be able to edit the object but will be able to continue reading the object if it is public. The current user must be a specified user in order to remove a user from the object.
 
 ## Fetch
 
 #### + (void)objectExistsWithId:(NSString *)objectId error:(void (^)(NSError *error))errorBlock success:(void (^)(BOOL exists))successBlock
+
 Checks to see if an object with the specified `objectId` already exists on Firebase.
 
 #### + (void)fetchObjectWithId:(NSString *)objectId completion:(void (^)(id object))completionBlock
+
 Fetches and returns the raw Firebase object via the provided `completionBlock`. The current user must have read access to the object in order to fetch its contents.
 
 #### + (void)fetchPublicObjectsWithBlock:(void (^)(id object, float progress))block
+
 Fetches and iteratively returns all public objects. For each object, the provided `block` is called once and also includes a `progress` value ranging from `0.0` to `1.0`, where each object is counted equally towards progress. Note that objects may be both public and shared.
 
 #### + (void)fetchSharedObjectsWithBlock:(void (^)(id object, float progress))block
+
 Fetches and iteratively returns all objects shared with the current user. For each object, the provided `block` is called once and also includes a `progress` value ranging from `0.0` to `1.0`, where each object is counted equally towards progress. Note that objects may be both shared and public.
 
 ## Observe
+
 *These observer methods follow the same behavior established in [KMHFirebaseController](/blog/firebase-controller/).*
 
 #### + (void)observeValueChangedAtPath:(NSString *)path forObjectWithId:(NSString *)objectId withBlock:(void(^)(id value))block
+
 Adds an observer at the given path relative to the provided `objectId` that will trigger the provided block when the value at that path is changed.
 
 #### + (void)observeChildAddedAtPath:(NSString *)path forObjectWithId:(NSString *)objectId withBlock:(void(^)(id value))block
+
 Adds an observer at the given path relative to the provided `objectId` that will trigger the provided block when any number of child objects are added at that path.
 
 #### + (void)observeChildChangedAtPath:(NSString *)path forObjectWithId:(NSString *)objectId withBlock:(void(^)(id value))block
+
 Adds an observer at the given path relative to the provided `objectId` that will trigger the provided block when any child object at the given path changes.
 
 #### + (void)observeChildRemovedFromPath:(NSString *)path forObjectWithId:(NSString *)objectId withBlock:(void(^)(id value))block
+
 Adds an observer at the given path relative to the provided `objectId` that will trigger the provided block when any child object at the given path is removed.
 
 #### + (void)removeValueChangedObserverAtPath:(NSString *)path forObjectWithId:(NSString *)objectId
+
 Removes the "value changed" observer from the given path relative to the provided `objectId`.
 
 #### + (void)removeChildAddedObserverAtPath:(NSString *)path forObjectWithId:(NSString *)objectId
+
 Removes the "child added" observer from the given path relative to the provided `objectId`.
 
 #### + (void)removeChildChangedObserverAtPath:(NSString *)path forObjectWithId:(NSString *)objectId
+
 Removes the "child changed" observer from the given path relative to the provided `objectId`.
 
 #### + (void)removeChildRemovedObserverAtPath:(NSString *)path forObjectWithId:(NSString *)objectId
+
 Removes the "child removed" observer from the given path relative to the provided `objectId`.

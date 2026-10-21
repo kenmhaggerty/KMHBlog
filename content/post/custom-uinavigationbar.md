@@ -29,7 +29,7 @@ You'll notice though that lots of apps use custom navigation bars, whether to be
 Traditionally, adding your own custom navigation bar has been a hassle. Some people "fake it" by [adding their navigation bar as a subview](https://www.codeschool.com/blog/2014/11/11/ios-app-creating-custom-nav-bar/) and hiding the standard UINavigationBar provided by UINavigationController. However, eagle-eyed observers will notice that this creates a behavioral inconsistency: while the standard UINavigationBar remains in place while segueing between views, navigation bars added as a subview slide in and out with the view.
 
 <div class="figure">
-  <img src="/blog/images/custom-uinavigationbar/uinavigationbar-correct.gif" style="width: 49%; display: inline;" align="top"> 
+  <img src="/blog/images/custom-uinavigationbar/uinavigationbar-correct.gif" style="width: 49%; display: inline;" align="top">
   <img src="/blog/images/custom-uinavigationbar/uinavigationbar-incorrect.gif" style="width: 49%; display: inline;" align="top">
 </div>
 <span class="caption"><b>LEFT</b> The standard navigation controller provided by iOS coordinates transitions between view controllers using a fade animation on a static navigation bar. <b>RIGHT</b> When simply added as a subview, the navigation bar slides onto the screen without a fade animation.</span>

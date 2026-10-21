@@ -11,7 +11,7 @@ description = "Recently I've been trying to keep my commit history clean and org
 Recently I've been trying to keep my commit history clean and organized with better branch management and more frequent commits, but one file kept taking up an inordinate amount of time. Can you guess which one?
 
 <div class="figure" style="border-style: none none solid none;">
-	<img src="/blog/images/pbxproj-organizer/sourcetree.png">
+ <img src="/blog/images/pbxproj-organizer/sourcetree.png">
 </div>
 <span class="caption"><b>Above</b> Even a small change to your Xcode project can seem to cause a cascade of changes to your <code>project.pbxproj</code> file inside of your <code>.xcodeproj</code> file.</span>
 
@@ -20,7 +20,7 @@ Yup, it's `project.pbxproj`, a hidden file within your project's `.xcodeproj` fi
 In theory, this is a file you shouldn't have to touch, and for the most part, you don't have to touch it all. However, some issues arise when you're working on multiple branches and attempting to merge things back together. For example, let's say that you have two branches that you're working on, and within each branch, you've separately imported the same class (`HelloWorld.h`/`.m`). What happens when you try to merge these two branches together?
 
 <div class="figure" style="border-style: none none solid none;">
-	<img src="/blog/images/pbxproj-organizer/merge_conflict.png">
+ <img src="/blog/images/pbxproj-organizer/merge_conflict.png">
 </div>
 <span class="caption"><b>Above</b> Merge conflicts arise because identical files imported on different branches are assigned unique UUIDs by Xcode. Failing to use a consistent UUID for each imported file can cause issues opening your Xcode project.</span>
 
@@ -37,7 +37,7 @@ Thankfully, computers are the ideal tool for performing tedious repetitive tasks
 To use this script, simply download or fork from [GitHub](https://github.com/kenmhaggerty/KMHXcodeTools), copy the `pbxproj_organizer.py` file into your Xcode project's directory so that it is a sibling to your `.xcodeproj` file, and add the following Run Script under Build Phases in Xcode:
 
 <div class="figure">
-	<img src="/blog/images/pbxproj-organizer/pbxproj_run_script.png">
+ <img src="/blog/images/pbxproj-organizer/pbxproj_run_script.png">
 </div>
 <span class="caption"><b>Above</b> The run script above will execute each time you build your Xcode project. The text contained acts as if entered into your computer's Terminal from within your project's directory.</span>
 
@@ -63,13 +63,13 @@ Also straightforward but key.
 What that means for you is that instead of seeing this:
 
 <div class="figure" style="border-style: none;">
-	<img src="/blog/images/pbxproj-organizer/before.png">
+ <img src="/blog/images/pbxproj-organizer/before.png">
 </div>
 
 you'll now see this:
 
 <div class="figure" style="border-style: none;">
-	<img src="/blog/images/pbxproj-organizer/after.png">
+ <img src="/blog/images/pbxproj-organizer/after.png">
 </div>
 
 which I think we can all agree is a whole lot better! 😅

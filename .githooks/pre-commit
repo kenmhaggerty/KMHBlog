@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Runs the test suite before every commit and blocks the commit if any test fails.
+# Runs the linters and test suite before every commit and blocks the commit if any of them fail.
 # Enable with: git config core.hooksPath .githooks
 # Skip once with: git commit --no-verify
 
@@ -8,6 +8,17 @@ cd "$(git rev-parse --show-toplevel)" || exit 1
 
 if ! command -v hugo >/dev/null 2>&1; then
   echo "pre-commit: hugo is not installed; cannot run tests." >&2
+  exit 1
+fi
+
+if [ ! -d node_modules ]; then
+  echo "pre-commit: lint tools are not installed; run \`npm install\` first." >&2
+  exit 1
+fi
+
+echo "pre-commit: linting..."
+if ! npm run --silent lint; then
+  echo "pre-commit: lint failed; commit aborted. Run \`npm run format\` to auto-fix what it can. (Use --no-verify to skip.)" >&2
   exit 1
 fi
 

@@ -1,0 +1,24 @@
+// markdownlint configuration for blog posts. Run with `npm run lint:md`.
+// Rules that conflict with how this blog is written are disabled below; everything else uses the defaults.
+{
+  "globs": ["content/**/*.md", "README.md"],
+  "ignores": ["node_modules/**", "public/**", "themes/**"],
+  "config": {
+    "default": true,
+    // Posts are prose; paragraphs are written one per line.
+    "MD013": false,
+    // Posts rely on inline HTML for figures, captions, and embedded gists (config.toml sets goldmark unsafe = true).
+    "MD033": false,
+    // Posts start at ### and use # / #### for API-reference sections styled by custom.css.
+    "MD001": false,
+    "MD025": false,
+    // Headings like "Thoughts? Feedback? Found a bug?" are intentional.
+    "MD026": false,
+    // Objective-C method signatures in headings (e.g. `(NSString *)objectId`) are not emphasis.
+    "MD037": false,
+    // Images use captions instead of alt text for now.
+    "MD045": false,
+    // Tables use compact `|---|` delimiter rows.
+    "MD060": false
+  }
+}
