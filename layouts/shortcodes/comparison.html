@@ -1,0 +1,20 @@
+{{- $firstLabel := .Get "firstLabel" -}}
+{{- $secondLabel := .Get "secondLabel" -}}
+<div class="figure">
+  <img-comparison-slider hover="hover">
+    <div slot="first" class="comparison-pane">
+      <img src="{{ .Get "first" }}" alt="{{ $firstLabel }}" />
+      {{- with $firstLabel }}<span class="comparison-badge first">{{ . }}</span>{{ end }}
+    </div>
+    <div slot="second" class="comparison-pane">
+      <img src="{{ .Get "second" }}" alt="{{ $secondLabel }}" />
+      {{- with $secondLabel }}<span class="comparison-badge second">{{ . }}</span>{{ end }}
+    </div>
+    <svg slot="handle" class="slider-handle" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -3 16 6">
+      <path d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2" fill="none" vector-effect="non-scaling-stroke" />
+    </svg>
+  </img-comparison-slider>
+</div>
+{{- with .Get "caption" }}
+<span class="caption">{{ . | safeHTML }}</span>
+{{- end }}

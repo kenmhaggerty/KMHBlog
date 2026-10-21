@@ -7,6 +7,7 @@ import unittest
 from helpers import BASE_URL, SITE_TITLE, build_site, published_posts
 
 STYLESHEETS = ["sanitize.css", "responsive.css", "highlight_monokai.css", "theme.css", "custom.css"]
+SLIDER_STYLESHEET = "https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
 DEFAULT_COVER = BASE_URL + "images/hero.png"
 
 
@@ -69,7 +70,9 @@ class HeaderTests(unittest.TestCase):
             with self.subTest(page=path):
                 links = self.site.html(path).find_all("link", rel="stylesheet")
                 hrefs = [link.attrs["href"].split("?")[0] for link in links]
-                self.assertEqual(hrefs, [BASE_URL + "css/" + name for name in STYLESHEETS])
+                expected = [BASE_URL + "css/" + name for name in STYLESHEETS]
+                expected.insert(-1, SLIDER_STYLESHEET)
+                self.assertEqual(hrefs, expected)
 
     def test_custom_css_has_cache_busting_version(self):
         versions = set()

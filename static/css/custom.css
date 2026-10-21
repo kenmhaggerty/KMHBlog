@@ -30,7 +30,7 @@ div.figure {
   border-width: thin;
   border-style: solid;
   border-color: #ccc;
-  margin: 0 -3px 3px;
+  margin: 0 -3px;
   min-height: 10px;
   text-align: center;
 }
@@ -155,4 +155,51 @@ pre.block {
 .scrollable-gist .gist-data {
   max-height: 400px;
   overflow-y: auto;
+}
+
+img-comparison-slider {
+  --divider-color: #000;
+  --divider-width: 2px;
+  --default-handle-color: #000;
+
+  display: block;
+}
+
+.slider-handle {
+  width: 50px;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+/* Badges live inside each slot so the slider clips them along with their image. */
+.comparison-pane {
+  position: relative;
+}
+
+img-comparison-slider.rendered .comparison-pane {
+  display: block;
+}
+
+.comparison-pane img {
+  display: block;
+}
+
+.comparison-badge {
+  position: absolute;
+  bottom: 8px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgb(0 0 0 / 70%);
+  color: #fff;
+  font-size: smaller;
+  line-height: normal;
+  pointer-events: none;
+}
+
+.comparison-badge.first {
+  left: 8px;
+}
+
+.comparison-badge.second {
+  right: 8px;
 }

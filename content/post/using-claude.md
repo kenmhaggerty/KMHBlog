@@ -40,17 +40,11 @@ Another reason why I advocate "design-coding" before "vibe-coding" is because no
 
 When I finally decided it was time to turn my Figma design into website code, I initially used Claude's mid-tier Sonnet 5 model and got a result that was<span class="ellipsis">...</span> not great. The design itself was messy and didn't match my mockup, and the code was also less elegant and would require a decent amount of rework:
 
-<div class="figure" style="border-style: none none solid none;">
-  <img src="/blog/images/using-claude/sonnet-output.png">
-</div>
-<span class="caption"><b>Above</b> Screenshot of output of "Sonnet 5" model by AI. While it's definitely "close," there are some misalignments and missing functionality (e.g., the image scrollbar) that caused me to lose confidence.</span>
+{{% comparison first="/blog/images/using-claude/figma.png" firstLabel="Figma" second="/blog/images/using-claude/sonnet.png" secondLabel="Sonnet 5" caption="<b>Above</b> Comparison of &quot;Sonnet 5&quot; model output vs. Figma. While it's definitely &quot;close,&quot; there are some misalignments and missing functionality (e.g., the image scrollbar) that caused me to lose confidence." %}}
 
 In contrast, I then tried using Claude's most advanced model Fable and, within 20 minutes, achieved a really impressive result with cleaner code and an end-result that better matched my mockup:
 
-<div class="figure" style="border-style: none none solid none;">
-  <img src="/blog/images/using-claude/fable-output.png">
-</div>
-<span class="caption"><b>Above</b> Screenshot of output of "Fable" model by AI. This was much closer to my original Figma mockup and felt like something I could work with.</span>
+{{% comparison first="/blog/images/using-claude/figma.png" firstLabel="Figma" second="/blog/images/using-claude/fable.png" secondLabel="Fable" caption="<b>Above</b> Comparison of output &quot;Fable&quot; model output vs. Figma. This was much closer to my original Figma mockup and felt like something I could work with." %}}
 
 For everyday tasks like asking questions, debugging code, proofreading, or generating stock images, the cheapest and most basic models will probably get the job done. It is my belief that it is both financially and computationally wasteful to use the most advanced models to do things a simpler model could accomplish. However, for anything more challenging or significant, the difference is real, so be sure to use the right model and don't be afraid to switch as appropriate.
 
