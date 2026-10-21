@@ -56,7 +56,7 @@ For everyday tasks like asking questions, debugging code, proofreading, or gener
 
 #### The Benefits of Still Being Technical
 
-AI tools have empowered those without technical knowledge to build real sites and applications previously limited to those with coding knowledge and experience. Nevertheless, I still think there is a real advantage to having *some* technical knowledge, especially when it comes to getting the best results out of your AI and to not having to always rely on the AI to fix things.
+AI tools have empowered those without technical knowledge to build real sites and applications previously limited to those with coding knowledge and experience. Nevertheless, I still think there is a real advantage to having *some* technical knowledge, especially when it comes to getting the best results out of your AI and not having to always rely on the AI to fix things.
 
 For my website, I knew what language I wanted the AI to use (TypeScript) because I wanted to be able to understand the code it generated and be able to make changes myself. Additionally, I decided ahead of time to structure each of my case studies as JSON files with consistent keys both for my own ease of updating and so the AI could write code that could easily ingest these files and use the same presentation logic for each case study page. Finally, I wanted my text content to support inline HTML in various places, so I made sure to name my keys accordingly (e.g., `html_content`) and save my paragraph text as strings with HTML rather than trying to have the AI suggest or intuit these things by itself.
 
@@ -85,7 +85,7 @@ Along with the overall website based on my Figma design, I was able to have Clau
 - A footer with external social media links using Simple Icons.
 - Metadata for SEO and Google indexing in [search results](https://www.google.com/search?q=ken+m+haggerty).
 
-In addition, I had Claude build the case studies selector dropdown on my main page, but since I had a specific vision in mind for what I wanted that to look, I mocked that out in Figma before asking the AI to build it for me.
+In addition, I had Claude build the case studies selector dropdown on my main page, but since I had a specific vision in mind for how I wanted that to look, I mocked that out in Figma before asking the AI to build it for me.
 
 ## How To Use AI
 
@@ -118,7 +118,7 @@ As described above, my first attempt at translating my Figma design to website c
 
 Model selection notwithstanding, even Claude's most advanced Fable model still fell short sometimes. For example, Fable initially omitted the desktop-versus-mobile toggle I had designed, assuming it was a control within Figma rather than part of my actual website. It was on me to notice this, explain to the AI what this was supposed to be, and ask the AI to implement it correctly.
 
-There are also certain things that that AI won't be able to do because they are, in fact, hard problems with no good solution. However, the AI doesn't always know or realize that and may keep trying in vain to get it done (and use up all of your tokens in the process). In my case, I tried using Fable to fix an issue where my background scrim wouldn't fade out evenly on iOS. Eventually, I ran out of [usage credits](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans) and had to make the executive decision that what I already had was "good enough." AI tools will rarely tell you "I don't know" unless they affirmatively know that an answer does not exist, and as a result they will often keep trying for as long as you let them. Deciding when to stop and move on is ultimately your decision.
+There are also certain things that AI won't be able to do because they are, in fact, hard problems with no good solution. However, the AI doesn't always know or realize that and may keep trying in vain to get it done (and use up all of your tokens in the process). In my case, I tried using Fable to fix an issue where my background scrim wouldn't fade out evenly on iOS. Eventually, I ran out of [usage credits](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans) and had to make the executive decision that what I already had was "good enough." AI tools will rarely tell you "I don't know" unless they affirmatively know that an answer does not exist, and as a result they will often keep trying for as long as you let them. Deciding when to stop and move on is ultimately your decision.
 
 Finally, as I also described above, it can still be easier to do some work for AI than to have AI do all of your work for you. When it came to implementing a selector dropdown to provide an alternate UI for accessing my case studies, it ended up being easier for me to mock it up in Figma than to try to explain how I wanted it to look and work.
 
