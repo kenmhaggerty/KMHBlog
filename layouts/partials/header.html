@@ -19,6 +19,14 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="canonical" href="{{ .Permalink }}"/>
 
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {{ with .Site.Params.home }}
+    <link rel="icon" href="{{ . }}/favicon-192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="{{ . }}/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ . }}/apple-touch-icon.png">
+  {{ end }}
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="{{ "css/sanitize.css" | absURL }}">
