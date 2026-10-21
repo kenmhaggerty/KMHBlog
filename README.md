@@ -8,3 +8,11 @@ The tests build the site with Hugo into a temporary directory and check the gene
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+To run the tests automatically before every commit (and block commits when they fail), enable the repo's hooks once per clone:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+Use `git commit --no-verify` to skip the hook for a single commit.
