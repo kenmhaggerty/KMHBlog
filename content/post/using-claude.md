@@ -36,7 +36,9 @@ While I fully designed my website only because this was my first time using AI, 
 
 #### Choose The Right Model
 
-Another reason why I advocate "design-coding" before "vibe-coding" is because not all models are alike. The newest models will almost certainly be the most capable, but they are also likely to be the most costly. (Most AI providers use a "[token](https://academy.claude.com/tutorials/tokens-and-embeddings)" system for measuring AI usage.) When building my website, I initially used Claude's mid-tier Sonnet 5 model and got a result that was not great. The design itself was messy and didn't match my mockup, and the code was also less elegant and would require a decent amount of rework:
+Another reason why I advocate "design-coding" before "vibe-coding" is because not all models are alike. The newest models will almost certainly be the most capable, but they are also likely to be the most costly. (Most AI providers use a "[token](https://academy.claude.com/tutorials/tokens-and-embeddings)" system for measuring AI usage.)
+
+When I finally decided it was time to turn my Figma design into website code, I initially used Claude's mid-tier Sonnet 5 model and got a result that was<span class="ellipsis">...</span> not great. The design itself was messy and didn't match my mockup, and the code was also less elegant and would require a decent amount of rework:
 
 <div class="figure" style="border-style: none none solid none;">
   <img src="/blog/images/using-claude/sonnet-output.png">
@@ -114,7 +116,7 @@ For all of its impressive results, there are still areas where AI falls short, a
 
 As described above, my first attempt at translating my Figma design to website code produced poor results. Claude's Sonnet 5 model misread parts of my design entirely. As a result, it was on me to retry using a different model, as Sonnet 5 thought it had done a good enough job. As far as I am aware, I don't think any AI will ask you in its response to switch to a different model before completing your task, as it is assumed that the model you selected is the model you want it to use. However, some AI tools like ChatGPT now include an "auto" mode that will automatically select what it thinks is the best model for each given query.
 
-Model selection notwithstanding, even Claude's most advanced Fable model still fell short sometimes. For example, Fable omitted the desktop-versus-mobile toggle I had designed, assuming it was a control within Figma rather than part of my actual website. It was on me to notice this, explain to the AI what this was supposed to be, and ask the AI to implement it correctly.
+Model selection notwithstanding, even Claude's most advanced Fable model still fell short sometimes. For example, Fable initially omitted the desktop-versus-mobile toggle I had designed, assuming it was a control within Figma rather than part of my actual website. It was on me to notice this, explain to the AI what this was supposed to be, and ask the AI to implement it correctly.
 
 There are also certain things that that AI won't be able to do because they are, in fact, hard problems with no good solution. However, the AI doesn't always know or realize that and may keep trying in vain to get it done (and use up all of your tokens in the process). In my case, I tried using Fable to fix an issue where my background scrim wouldn't fade out evenly on iOS. Eventually, I ran out of [usage credits](https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans) and had to make the executive decision that what I already had was "good enough." AI tools will rarely tell you "I don't know" unless they affirmatively know that an answer does not exist, and as a result they will often keep trying for as long as you let them. Deciding when to stop and move on is ultimately your decision.
 
