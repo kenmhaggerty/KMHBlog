@@ -166,8 +166,8 @@ img-comparison-slider {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Hide the focus ring when the slider is touched or clicked, but keep it for keyboard users. */
-img-comparison-slider:focus:not(:focus-visible) {
+/* The slider focuses itself on touch, which Safari treats as :focus-visible, so hide its focus ring entirely. */
+img-comparison-slider:focus {
   outline: none;
 }
 
