@@ -1,2 +1,10 @@
 # KMHBlog
 Personal blog of Ken M. Haggerty.
+
+## Tests
+
+The tests build the site with Hugo into a temporary directory and check the generated HTML, CSS, RSS feed, and sitemap. They need only `hugo` (with the `angels-ladder` theme in `themes/`) and Python 3.
+
+```sh
+python3 -m unittest discover -s tests -v
+```
