@@ -82,6 +82,9 @@ h4 {
 h4 + p {
   margin: 2px 0px 25px 0px;
 }
+.caption + h4 {
+  padding-top: 25px;
+}
 article h2 {
   margin: 30px 0px 20px 0px;
 }
