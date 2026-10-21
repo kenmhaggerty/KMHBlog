@@ -58,17 +58,15 @@ class RenderedContentTests(unittest.TestCase):
         if parsed.netloc:
             if not url.startswith(BASE_URL):
                 return None
-            path = parsed.path[len("/blog/"):]
+            path = parsed.path[len("/blog/") :]
         elif parsed.path.startswith("/"):
             if not parsed.path.startswith("/blog/"):
                 return "outside-blog:" + parsed.path
-            path = parsed.path[len("/blog/"):]
+            path = parsed.path[len("/blog/") :]
         else:
             path = os.path.normpath(os.path.join(os.path.dirname(page), parsed.path))
         path = unquote(path)
-        if path in ("", ".") or path.endswith("/"):
-            path = os.path.join(path, "index.html")
-        elif os.path.isdir(self.site.path(path)):
+        if path in ("", ".") or path.endswith("/") or os.path.isdir(self.site.path(path)):
             path = os.path.join(path, "index.html")
         return path
 
@@ -91,7 +89,7 @@ class RenderedContentTests(unittest.TestCase):
         for post in load_posts():
             for src in re.findall(r'<img[^>]+src="(/blog/images/[^"]+)"', post.body):
                 with self.subTest(post=post.filename, src=src):
-                    self.assertTrue(os.path.isfile(os.path.join(PROJECT_ROOT, "static", src[len("/blog/"):])))
+                    self.assertTrue(os.path.isfile(os.path.join(PROJECT_ROOT, "static", src[len("/blog/") :])))
 
     def test_article_links_use_https(self):
         for post in published_posts():

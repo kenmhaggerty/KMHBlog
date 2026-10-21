@@ -49,7 +49,7 @@ class HeaderTests(unittest.TestCase):
         for post in self.posts:
             with self.subTest(post=post.filename):
                 document = self.site.html(post.slug, "index.html")
-                expected = "{} | {}".format(post.title, SITE_TITLE)
+                expected = f"{post.title} | {SITE_TITLE}"
                 self.assertEqual(document.find("title").clean_text(), expected)
                 self.assertEqual(meta_content(document, name="twitter:title"), expected)
 

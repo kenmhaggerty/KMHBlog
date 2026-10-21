@@ -12,10 +12,11 @@ python3 -m unittest discover -s tests -v
 
 ## Linting and Formatting
 
-Posts and `README.md` are checked with [markdownlint](https://github.com/DavidAnson/markdownlint-cli2) (`.markdownlint-cli2.jsonc`), and `static/css/custom.css` with [Stylelint](https://stylelint.io) (`.stylelintrc.json`) and [Prettier](https://prettier.io). Install the tools once with Node.js:
+Posts and `README.md` are checked with [markdownlint](https://github.com/DavidAnson/markdownlint-cli2) (`.markdownlint-cli2.jsonc`), `static/css/custom.css` with [Stylelint](https://stylelint.io) (`.stylelintrc.json`) and [Prettier](https://prettier.io), and the Python tests with [Ruff](https://docs.astral.sh/ruff/) (`ruff.toml`). Install the tools once:
 
 ```sh
 npm install
+brew install ruff
 npm run lint     # check everything
 npm run format   # auto-fix what can be fixed
 ```

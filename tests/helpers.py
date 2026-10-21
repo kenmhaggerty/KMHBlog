@@ -40,6 +40,7 @@ def make_temp_dir(prefix):
 # Building
 # --------------------------------------------------
 
+
 class Build:
     """The output of a single `hugo` build."""
 
@@ -68,8 +69,19 @@ class Build:
 
 def run_hugo(source, destination, *args):
     result = subprocess.run(
-        ["hugo", "--source", source, "--destination", destination, "--cleanDestinationDir", "--logLevel", "warn", *args],
+        [
+            "hugo",
+            "--source",
+            source,
+            "--destination",
+            destination,
+            "--cleanDestinationDir",
+            "--logLevel",
+            "warn",
+            *args,
+        ],
         capture_output=True,
+        check=False,
         text=True,
     )
     log = result.stdout + result.stderr
@@ -99,7 +111,7 @@ def copy_project(prefix):
 def write_post(source, filename, front_matter, body):
     lines = ["+++"]
     for key, value in front_matter.items():
-        lines.append("{} = {}".format(key, json.dumps(value)))
+        lines.append(f"{key} = {json.dumps(value)}")
     lines += ["+++", "", body, ""]
     with open(os.path.join(source, "content", "post", filename), "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
@@ -107,6 +119,7 @@ def write_post(source, filename, front_matter, body):
 
 # Content
 # --------------------------------------------------
+
 
 class Post:
     def __init__(self, filename, front_matter, body):
@@ -223,7 +236,7 @@ class Node:
     def next_element(self):
         """The next sibling element, skipping whitespace-only text."""
         siblings = self.parent.children
-        for sibling in siblings[siblings.index(self) + 1:]:
+        for sibling in siblings[siblings.index(self) + 1 :]:
             if isinstance(sibling, Node):
                 return sibling
             if sibling.strip():

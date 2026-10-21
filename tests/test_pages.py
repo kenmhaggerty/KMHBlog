@@ -105,7 +105,7 @@ class SinglePostTests(unittest.TestCase):
                 for cls, rel, expected in [("previous", "prev", newer), ("next", "next", older)]:
                     span = nav.find("span", cls=cls)
                     if expected is None:
-                        self.assertIsNone(span, "unexpected '{}' link".format(cls))
+                        self.assertIsNone(span, f"unexpected '{cls}' link")
                         continue
                     link = span.find("a")
                     self.assertEqual(link.attrs["href"], expected.permalink)

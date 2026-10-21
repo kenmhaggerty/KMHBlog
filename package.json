@@ -3,10 +3,11 @@
   "private": true,
   "description": "Linting and formatting tools for the blog. The site itself is built with Hugo.",
   "scripts": {
-    "lint": "npm run lint:md && npm run lint:css && npm run format:check",
+    "lint": "npm run lint:md && npm run lint:css && npm run lint:py && npm run format:check",
     "lint:md": "markdownlint-cli2",
     "lint:css": "stylelint \"static/css/**/*.css\"",
-    "format": "prettier --write \"static/css/**/*.css\" && stylelint --fix \"static/css/**/*.css\" && markdownlint-cli2 --fix",
+    "lint:py": "ruff check && ruff format --check",
+    "format": "prettier --write \"static/css/**/*.css\" && stylelint --fix \"static/css/**/*.css\" && markdownlint-cli2 --fix && ruff check --fix && ruff format",
     "format:check": "prettier --check \"static/css/**/*.css\"",
     "test": "python3 -m unittest discover -s tests"
   },

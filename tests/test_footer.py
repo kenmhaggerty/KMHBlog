@@ -16,7 +16,7 @@ class FooterTests(unittest.TestCase):
         for path in self.pages:
             with self.subTest(page=path):
                 footer = self.site.html(path).find("footer", role="contentinfo")
-                self.assertEqual(footer.clean_text(), "Written by Ken M. Haggerty • {}".format(latest_year))
+                self.assertEqual(footer.clean_text(), f"Written by Ken M. Haggerty • {latest_year}")
 
     def test_highlight_js_is_loaded_and_initialized(self):
         for path in self.pages:

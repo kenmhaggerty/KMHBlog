@@ -33,7 +33,12 @@ class FixtureSiteTests(unittest.TestCase):
         write_post(
             cls.source,
             "fixture-tagged.md",
-            {"date": "2010-01-03T12:00:00-05:00", "draft": False, "title": "Fixture Tagged", "tags": ["Swift UI", "iOS", "firebase"]},
+            {
+                "date": "2010-01-03T12:00:00-05:00",
+                "draft": False,
+                "title": "Fixture Tagged",
+                "tags": ["Swift UI", "iOS", "firebase"],
+            },
             "Markdown extras: ==marked== ~~deleted~~ H~2~O x^2^.\n\n#### Fixture Heading\n\nBody text.",
         )
         write_post(
@@ -90,7 +95,7 @@ class FixtureSiteTests(unittest.TestCase):
         second_page = summary_titles(self.site.html("page", "2", "index.html"))
         titles = [post.title for post in self.visible_posts]
         self.assertEqual(first_page, titles[:PAGE_SIZE])
-        self.assertEqual(second_page, titles[PAGE_SIZE:2 * PAGE_SIZE])
+        self.assertEqual(second_page, titles[PAGE_SIZE : 2 * PAGE_SIZE])
 
     def test_pagination_links_between_pages(self):
         first_nav = self.site.html("index.html").find("nav")
@@ -149,7 +154,7 @@ class FixtureSiteTests(unittest.TestCase):
         for tag, text in [("mark", "marked"), ("del", "deleted"), ("sub", "2"), ("sup", "2")]:
             with self.subTest(tag=tag):
                 node = article.find(tag)
-                self.assertIsNotNone(node, "<{}> was not rendered".format(tag))
+                self.assertIsNotNone(node, f"<{tag}> was not rendered")
                 self.assertEqual(node.clean_text(), text)
 
     def test_single_tildes_are_subscript_not_strikethrough(self):
@@ -167,7 +172,7 @@ class ArchetypeTests(unittest.TestCase):
     def test_new_posts_start_as_drafts(self):
         source = copy_project("kmhblog-archetype-")
         result = subprocess.run(
-            ["hugo", "new", "--source", source, "post/archetype-check.md"], capture_output=True, text=True
+            ["hugo", "new", "--source", source, "post/archetype-check.md"], capture_output=True, check=False, text=True
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         with open(os.path.join(source, "content", "post", "archetype-check.md"), encoding="utf-8") as f:

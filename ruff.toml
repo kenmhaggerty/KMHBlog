@@ -1,0 +1,19 @@
+# Ruff configuration for the Python test suite in tests/. Run with `npm run lint:py`.
+include = ["tests/**/*.py"]
+line-length = 120
+target-version = "py39"
+
+[lint]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # import sorting
+  "B",   # flake8-bugbear
+  "UP",  # pyupgrade
+  "SIM", # flake8-simplify
+  "PLW1510", # subprocess.run without an explicit check argument
+]
+
+[lint.isort]
+known-first-party = ["helpers"]

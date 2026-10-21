@@ -11,6 +11,11 @@ if ! command -v hugo >/dev/null 2>&1; then
   exit 1
 fi
 
+if ! command -v ruff >/dev/null 2>&1; then
+  echo "pre-commit: ruff is not installed; run \`brew install ruff\` first." >&2
+  exit 1
+fi
+
 if [ ! -d node_modules ]; then
   echo "pre-commit: lint tools are not installed; run \`npm install\` first." >&2
   exit 1
