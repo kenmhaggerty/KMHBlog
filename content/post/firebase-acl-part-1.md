@@ -10,9 +10,9 @@ description = "I had originally planned to publish a blog post on I couldn't fig
 ### Deus Ex Machina: or, in Praise Of Writing
 
 > "I write entirely to find out what I’m thinking, what I’m looking at, what I see and what it means. What I want and what I fear."  
-> — Joan Didion, ["Why I Write"](http://www.montgomeryschoolsmd.org/uploadedFiles/schools/whitmanhs/academics/english/Why%20I%20Write%20Didion.pdf)
+> — Joan Didion, ["Why I Write"](https://www.nytimes.com/1976/12/05/archives/why-i-write-why-i-write.html?unlocked_article_code=1.KVE.rS3f.GHRSeLDXv1CO&smid=url-share)
 
-I had originally planned to publish a blog post on my difficulties working with Firebase. I had managed to create a cleaner API for Firebase ([**KMHFirebaseController**](/blog/firebase-controller/)), but I struggled to find a way to share objects in Firebase similar to how I did in [Parse](http://www.parse.com/)—i.e., user- and object-specific; semantically naïve; as [normalized](https://en.wikipedia.org/wiki/Database_normalization) as possible; and with correct read, write, and sharing permissions.
+I had originally planned to publish a blog post on my difficulties working with Firebase. I had managed to create a cleaner API for Firebase ([**KMHFirebaseController**](/blog/firebase-controller/)), but I struggled to find a way to share objects in Firebase similar to how I did in [Parse](https://www.parse.com/)—i.e., user- and object-specific; semantically naïve; as [normalized](https://en.wikipedia.org/wiki/Database_normalization) as possible; and with correct read, write, and sharing permissions.
 
 I spent the two weeks after my second blog post attempting to implement this before deciding it was a better use of time to publish what I had and implement sharing later.
 

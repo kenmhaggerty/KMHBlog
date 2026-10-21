@@ -8,7 +8,7 @@ description = "Traditionally, custom navigation bars have been a hassle to imple
 
 +++
 
-Navigation bars are everywhere! Just like [Helvetica](http://www.hustwit.com/category/helvetica/), once you notice them you'll start seeing them wherever you look, or at least in many of your favorite and most-used apps.
+Navigation bars are everywhere! Just like [Helvetica](https://www.hustwit.com/helvetica/), once you notice them you'll start seeing them wherever you look, or at least in many of your favorite and most-used apps.
 
 <div class="figure" style="border-style: none none solid none;">
   <img src="/blog/images/custom-uinavigationbar/uinavigationbar-diagram.png">
