@@ -163,6 +163,12 @@ img-comparison-slider {
   --default-handle-color: #000;
 
   display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hide the focus ring when the slider is touched or clicked, but keep it for keyboard users. */
+img-comparison-slider:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .slider-handle {
